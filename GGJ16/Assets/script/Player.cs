@@ -11,10 +11,10 @@ public class Player : MonoBehaviour {
     public LayerMask groundLayers;
 
     private bool boosting = false;
-    public bool grounded;
+    private bool grounded;
     private bool jumpPressed;
     private bool jumpReleased;
-    public  bool doubleJumped;
+    private  bool doubleJumped;
     private bool facingRight = true;
     private float boostTimer = 0f;
     private Vector2 boostTo;
