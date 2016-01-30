@@ -13,6 +13,8 @@ public class Door : MonoBehaviour {
 
 	Vector3 neutralPosition;
 
+	public bool startOpen = true;
+
 	public bool open {
 		get {
 			return _open;
@@ -29,7 +31,10 @@ public class Door : MonoBehaviour {
 
 	void Awake() {
 		neutralPosition = transform.localPosition;
-		Open();
+		if (startOpen) {
+			t = 1;
+			transform.localPosition = neutralPosition + Vector3.up * distance * t;
+		}
 	}
 
 	void Update() {
