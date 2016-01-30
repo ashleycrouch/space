@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -60,12 +62,6 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\script\BreathTimer.cs" />
@@ -77,10 +73,15 @@
     <Compile Include="Assets\script\PlayerZeroG.cs" />
     <Compile Include="Assets\script\Room.cs" />
     <Compile Include="Assets\script\Tasks\Task.cs" />
-    <Compile Include="Assets\script\Tooltip.cs" />
+    <Compile Include="Assets\script\Interaction.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
     <Compile Include="Assets\script\UIscripts\TextTrigger.cs" />
     <Compile Include="Assets\script\UIscripts\TimeKeeper.cs" />
+    <Compile Include="Assets\script\circuitButton.cs" />
+    <Compile Include="Assets\script\circuitManager.cs" />
+    <Compile Include="Assets\script\panelScript.cs" />
+    <Compile Include="Assets\script\wireButton.cs" />
+    <Compile Include="Assets\script\wireManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
