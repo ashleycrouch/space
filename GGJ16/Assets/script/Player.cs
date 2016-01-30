@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
     private bool facingRight = true;
     private float boostTimer = 0f;
     private Vector2 boostTo;
-    private Rigidbody2D my_Rigidbody;
+    protected Rigidbody2D my_Rigidbody;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-    void Update() {
+    protected virtual void Update() {
         if (Input.GetAxisRaw("Boost") > 0 && boostTimer <= 0) {
             boosting = true;
             boostTimer = boostCooldown;
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
 
         boostTimer -= Time.deltaTime;
     }
-	void FixedUpdate () {
+	protected virtual void FixedUpdate () {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
         
@@ -93,5 +93,9 @@ public class Player : MonoBehaviour {
         } else {
             grounded = false;
         }
+    }
+
+    public void kill() {
+        Debug.Log("YOU PASSED OUT");
     }
 }
