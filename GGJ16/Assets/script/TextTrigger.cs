@@ -17,8 +17,8 @@ public class TextTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
-            dialogue.GetComponent<Text>().text = "";
-            dialogue.GetComponent<TextDialogue>().textAsset = textAsset;
+            //The following is called whenever you want to send a textasset to the dialogue script
+            dialogue.GetComponent<TextDialogue>().sendText(textAsset);
         }
     }
 }
