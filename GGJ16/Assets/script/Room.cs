@@ -75,7 +75,10 @@ public class Room : MonoBehaviour {
 		Vector3 playerPos = player.transform.position;
 		foreach (Room room in allRooms) {
 			playerPos.z = room.transform.position.z;
-			Bounds bounds = new Bounds(room.transform.position + (Vector3) room.bounds.size / 2, room.bounds.size / 2);
+			Bounds bounds = new Bounds(room.transform.position + (Vector3) room.bounds.size / 2, room.bounds.size);
+			Vector3 extents = bounds.extents;
+			extents.z = 10000000;
+			bounds.extents = extents;
 			if (bounds.Contains(playerPos)) {
 				current = room;
 				break;
