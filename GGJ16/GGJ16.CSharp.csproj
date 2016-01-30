@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\script\BreathTimer.cs" />
+    <Compile Include="Assets\script\Cam.cs" />
     <Compile Include="Assets\script\CameraRig.cs" />
     <Compile Include="Assets\script\DoorTrigger.cs" />
     <Compile Include="Assets\script\Interactable.cs" />

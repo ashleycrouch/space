@@ -10,12 +10,14 @@ public class Player : MonoBehaviour {
     public float boostCooldown = 1f;
     public LayerMask groundLayers;
 
+    public bool canHide;
     private bool boosting = false;
     private bool grounded;
     private bool jumpPressed;
     private bool jumpReleased;
     private bool doubleJumped;
     private bool facingRight = true;
+    private bool hiding;
     private float boostTimer = 0f;
     private Vector2 boostTo;
     protected Rigidbody2D my_Rigidbody;
@@ -36,20 +38,31 @@ public class Player : MonoBehaviour {
             jumpPressed = true;
             jumpReleased = false;
         }
-        if(Input.GetAxisRaw("Vertical") == 0) {
+        if(Input.GetAxisRaw("Vertical") <= 0) {
             jumpReleased = true;
         }
 
         boostTimer -= Time.deltaTime;
+
     }
-	protected virtual void FixedUpdate () {
+    protected virtual void FixedUpdate () {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
+
+        //Debug.Log(yInput);
+
+        GetComponent<BoxCollider2D>().enabled = true;
+        my_Rigidbody.isKinematic = false;
         
 
         if (boosting) {
-            Boost();
-        } else {
+            Boost(); 
+        } else if (canHide && (yInput == -1)) {
+            //will play hiding animation
+            GetComponent<BoxCollider2D>().enabled = false;
+            hiding = true;
+            my_Rigidbody.isKinematic = true;
+        }else{
             Move(xInput, yInput);
         }
         GroundCheck();
@@ -57,6 +70,7 @@ public class Player : MonoBehaviour {
 
     private void Move(float x, float y) {
         my_Rigidbody.velocity = new Vector2(speed*x, my_Rigidbody.velocity.y);
+        hiding = false;
         if(my_Rigidbody.velocity.x > 0) {
             transform.localScale = new Vector2(1f,1.5f);
             facingRight = true;
@@ -97,5 +111,16 @@ public class Player : MonoBehaviour {
 
     public void kill() {
         Debug.Log("YOU PASSED OUT");
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Hidable") {
+            canHide = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag == "Hidable") {
+            canHide = false;
+        }
     }
 }
