@@ -51,13 +51,14 @@ public class DoorTrigger : MonoBehaviour {
 	}
 
 	void MovePlayer(Collider2D player, Vector2 direction) {
+		float bufferDist = 0.05f; //extra distance to move player
 		Vector3 playerPos = player.transform.position;
 		if (direction == Vector2.left) {
-			playerPos.x = transform.position.x - player.bounds.size.x;
+			playerPos.x = transform.position.x - player.bounds.size.x - bufferDist;
 			
 		}
 		if (direction == Vector2.right) {
-			playerPos.x = transform.position.x + collider.bounds.size.x;
+			playerPos.x = transform.position.x + collider.bounds.size.x + bufferDist;
 		}
 		player.transform.position = playerPos;
 	}
