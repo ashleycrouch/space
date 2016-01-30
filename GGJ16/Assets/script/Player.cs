@@ -3,18 +3,18 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public float jumpForce;
-    public float speed;
-    public float boostSpeed;
-    public float boostDistance;
-    public float boostCooldown;
-    public LayerMask groundLayers;
+    public float jumpForce = 500f;
+    public float speed = 10f;
+    public float boostSpeed = 20f;
+    public float boostDistance = 5f;
+    public float boostCooldown = 1f;
+    public LayerMask groundLayers = LayerMask.NameToLayer("Default");
 
     private bool boosting = false;
     private bool grounded;
     private bool jumpPressed;
     private bool jumpReleased;
-    private  bool doubleJumped;
+    private bool doubleJumped;
     private bool facingRight = true;
     private float boostTimer = 0f;
     private Vector2 boostTo;
