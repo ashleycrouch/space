@@ -73,12 +73,13 @@
     <Compile Include="Assets\script\CameraRig.cs" />
     <Compile Include="Assets\script\DoorTrigger.cs" />
     <Compile Include="Assets\script\Interactable.cs" />
+    <Compile Include="Assets\script\Interaction.cs" />
     <Compile Include="Assets\script\Player.cs" />
     <Compile Include="Assets\script\PlayerZeroG.cs" />
     <Compile Include="Assets\script\Room.cs" />
     <Compile Include="Assets\script\Tasks\Task.cs" />
     <Compile Include="Assets\script\Tasks\TaskManager.cs" />
-    <Compile Include="Assets\script\Tooltip.cs" />
+    <Compile Include="Assets\script\Transporter.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
     <Compile Include="Assets\script\UIscripts\TextTrigger.cs" />
     <Compile Include="Assets\script\UIscripts\TimeKeeper.cs" />
