@@ -69,6 +69,7 @@
     <Compile Include="Assets\script\CameraRig.cs" />
     <Compile Include="Assets\script\DoorTrigger.cs" />
     <Compile Include="Assets\script\Interactable.cs" />
+    <Compile Include="Assets\script\MultiRoomObject.cs" />
     <Compile Include="Assets\script\Player.cs" />
     <Compile Include="Assets\script\PlayerZeroG.cs" />
     <Compile Include="Assets\script\Room.cs" />
