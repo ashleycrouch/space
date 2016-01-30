@@ -4,6 +4,7 @@ using System.Collections;
 public class Task : MonoBehaviour {
 
     protected bool completed;
+    public string room;
 
 	public virtual void Complete() {
         completed = true;
@@ -13,5 +14,8 @@ public class Task : MonoBehaviour {
     }
     public virtual Vector2 Location() {
         return transform.position;
+    }
+    public virtual string Room() {
+        return room;
     }
 }
