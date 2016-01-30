@@ -45,7 +45,7 @@ public class DoorTrigger : MonoBehaviour {
 				MovePlayer(other, - direction);
 			}
 			else {
-				Debug.LogWarning("Door does not connect to current room!");
+				Debug.LogWarning("Door does not connect to current room!", this);
 			}
 		}
 	}
