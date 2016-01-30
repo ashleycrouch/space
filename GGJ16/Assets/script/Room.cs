@@ -13,8 +13,8 @@ public class Room : MonoBehaviour {
 		}
 	}
 
-	public const int WIDTH = 24;
-	public const int HEIGHT = 16;
+	public const int WIDTH = 16;
+	public const int HEIGHT = 12;
 
 	public BoxCollider2D bounds { get; private set; }
 
@@ -24,7 +24,7 @@ public class Room : MonoBehaviour {
 		bounds.offset = bounds.size / 2;
 		
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		if (player && bounds.bounds.Contains(player.transform.position)) {
+		if (player && bounds.bounds.Contains(new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z))) {
 			current = this;
 		}
 	}
