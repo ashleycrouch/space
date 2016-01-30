@@ -2,6 +2,8 @@
 
 public class DoorTrigger : MultiRoomObject {
 
+	public bool vertical = false;
+
 	Room room1, room2;
 
 	//the direction moving from room 1 to room 2 (invert for other way)
@@ -17,8 +19,14 @@ public class DoorTrigger : MultiRoomObject {
 			gameObject.SetActive(false);
 		}
 		else {
-			float dx = room2.transform.position.x - room1.transform.position.x;
-			direction = Vector2.right * Mathf.Sign(dx);
+			if (!vertical) {
+				float dx = room2.transform.position.x - room1.transform.position.x;
+				direction = Vector2.right * Mathf.Sign(dx);
+			}
+			else {
+				float dy = room2.transform.position.y - room1.transform.position.y;
+				direction = Vector2.up * Mathf.Sign(dy);
+			}
 		}
 		bounds = collider.bounds;
 	}
@@ -32,7 +40,7 @@ public class DoorTrigger : MultiRoomObject {
 			}
 			else if (Room.current == room2)	{
 				Room.current = room1;
-				MovePlayer(other, - direction);
+				MovePlayer(other, -direction);
 			}
 			else {
 				Debug.LogWarning("Door does not connect to current room!", this);
@@ -45,10 +53,19 @@ public class DoorTrigger : MultiRoomObject {
 		Vector3 playerPos = player.transform.position;
 		if (direction == Vector2.left) {
 			playerPos.x = transform.position.x - player.bounds.size.x - bufferDist;
-			
+			print("left");
 		}
 		if (direction == Vector2.right) {
 			playerPos.x = transform.position.x + bounds.size.x + bufferDist;
+			print("right");
+		}
+		if (direction == Vector2.down) {
+			playerPos.y = transform.position.y - player.bounds.size.y - bufferDist;
+			print("down");
+		}
+		if (direction == Vector2.up) {
+			playerPos.y = transform.position.y + bounds.size.y + bufferDist;
+			print("up");
 		}
 		player.transform.position = playerPos;
 	}
