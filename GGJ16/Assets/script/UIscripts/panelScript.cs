@@ -3,11 +3,15 @@ using System.Collections;
 
 public class panelScript : MonoBehaviour {
 
-    private wireManager manager;
+    private circuitManager manager;
+    private Canvas canvas;
 
     // Use this for initialization
     void Start () {
-        manager = GameObject.FindObjectOfType<wireManager>();
+        manager = GameObject.FindObjectOfType<circuitManager>();
+
+        manager.gameObject.SetActive(false);
+
 	}
 	
 	// Update is called once per frame
@@ -17,6 +21,6 @@ public class panelScript : MonoBehaviour {
 
     public void onClick()
     {
-        manager.enabled = true;
+        manager.gameObject.SetActive(true);
     }
 }

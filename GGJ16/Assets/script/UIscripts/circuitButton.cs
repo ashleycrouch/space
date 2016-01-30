@@ -1,25 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class circuitButton : MonoBehaviour {
 
     public GameObject thing;
-    public bool pressed;
     private circuitManager manager;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         manager = GetComponentInParent<circuitManager>();
-        //manager.enabled = false;
     }
 
     public void onClick()
     {
-        if (!pressed)
+        if (!gameObject.GetComponent<Toggle>().isOn)
         {
             thing.SetActive(true);
-            pressed = true;
             manager.addCircuit(this);
         }
     }
@@ -28,6 +26,6 @@ public class circuitButton : MonoBehaviour {
     public void disconnect()
     {
         thing.SetActive(false);
-        pressed = false;
+        gameObject.GetComponent<Toggle>().isOn = false;
     }
 }
