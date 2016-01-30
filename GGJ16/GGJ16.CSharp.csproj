@@ -76,6 +76,7 @@
     <Compile Include="Assets\script\Player.cs" />
     <Compile Include="Assets\script\PlayerZeroG.cs" />
     <Compile Include="Assets\script\Room.cs" />
+    <Compile Include="Assets\script\Tasks\Task.cs" />
     <Compile Include="Assets\script\Tooltip.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
     <Compile Include="Assets\script\UIscripts\TextTrigger.cs" />
