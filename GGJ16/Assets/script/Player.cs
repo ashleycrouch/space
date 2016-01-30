@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
     public LayerMask groundLayers;
 
     public bool canHide;
+
+    private Animator animator;
     private bool boosting = false;
     private bool grounded;
     private bool jumpPressed;
@@ -25,6 +27,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         my_Rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour {
         
 
         if (boosting) {
+
             Boost(); 
         } else if (canHide && (yInput == -1)) {
             //will play hiding animation
@@ -71,25 +75,37 @@ public class Player : MonoBehaviour {
     private void Move(float x, float y) {
         my_Rigidbody.velocity = new Vector2(speed*x, my_Rigidbody.velocity.y);
         hiding = false;
-        if(my_Rigidbody.velocity.x > 0) {
+        if(x > 0) {
             transform.localScale = new Vector2(1f,1.5f);
             facingRight = true;
-        } else if(my_Rigidbody.velocity.x < 0){
+            animator.SetInteger("AnimState", 1);
+        } else if(x < 0){
             transform.localScale = new Vector2(-1f, 1.5f);
             facingRight = false;
+            animator.SetInteger("AnimState", 1);
+        } else if(my_Rigidbody.velocity.magnitude == 0f) {
+            animator.SetInteger("AnimState", 0);
+
         }
+        if (!grounded) {
+            animator.SetInteger("AnimState", 3);
+        }
+
         if (jumpPressed) {
             if (grounded || !doubleJumped) {
                 my_Rigidbody.AddForce(new Vector2(0f, jumpForce));
+                if (!grounded) {
+                    doubleJumped = true;
+                    animator.SetInteger("AnimState", 4);
+                }
             }
-            if (!grounded) {
-                doubleJumped = true;
-            }
+
             jumpPressed = false;
         }
     }
 
     private void Boost() {
+        animator.SetInteger("AnimState", 2);
         my_Rigidbody.velocity = new Vector2(facingRight? boostSpeed : -boostSpeed, 0f);
         if((facingRight && transform.position.x > boostTo.x) ||
             (!facingRight && transform.position.x < boostTo.x)) {
