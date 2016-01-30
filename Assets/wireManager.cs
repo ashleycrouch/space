@@ -4,22 +4,23 @@ using System.Collections;
 public class wireManager : MonoBehaviour
 {
     public wireButton current;
-    public wireButton[] group;
+    public wireButton check;
     
     // Use this for initialization
     void Start()
     {
-        group = GetComponentsInChildren<wireButton>();
+        //group = GetComponentsInChildren<wireButton>();
         current = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(GetComponentInChildren<wireButton>().pressed)
-        //{
-        //    current = 
-        //}
-
+        check = GetComponentInChildren<wireButton>();
+        if(check.pressed == true)
+        {
+            current = check;
+            check.disconnect();
+        }
     }
 }
