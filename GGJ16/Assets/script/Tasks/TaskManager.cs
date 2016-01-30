@@ -12,7 +12,6 @@ public class TaskManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        breathTimer = GameObject.Find("BreathTimer");
         tasks = new ArrayList();
         foreach(Task task in initialTasks) {
             AddTask(task);
