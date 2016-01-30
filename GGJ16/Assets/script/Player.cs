@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
     private bool doubleJumped;
     private bool facingRight = true;
     private bool hiding;
+    private bool idle;
     private float boostTimer = 0f;
     private Vector2 boostTo;
     protected Rigidbody2D my_Rigidbody;
@@ -32,10 +33,15 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
     protected virtual void Update() {
+        Debug.Log(boostTimer);
         if (Input.GetAxisRaw("Boost") > 0 && boostTimer <= 0) {
             boosting = true;
             boostTimer = boostCooldown;
-            boostTo = new Vector2(facingRight ? transform.position.x + boostDistance : transform.position.x - boostDistance, transform.position.y);
+            if (idle) {
+                boostTo = new Vector2(this.transform.position.x, this.transform.position.y + boostDistance/1.5f);
+            } else {
+                boostTo = new Vector2(facingRight ? transform.position.x + boostDistance : transform.position.x - boostDistance, transform.position.y);
+            }
         }
         if (jumpReleased && Input.GetAxisRaw("Vertical") > 0.50f) {
             jumpPressed = true;
@@ -75,6 +81,7 @@ public class Player : MonoBehaviour {
     private void Move(float x, float y) {
         my_Rigidbody.velocity = new Vector2(speed*x, my_Rigidbody.velocity.y);
         hiding = false;
+        idle = false;
         if(x > 0) {
             transform.localScale = new Vector2(1f,1.5f);
             facingRight = true;
@@ -84,6 +91,7 @@ public class Player : MonoBehaviour {
             facingRight = false;
             animator.SetInteger("AnimState", 1);
         } else if(my_Rigidbody.velocity.magnitude == 0f) {
+            idle = true;
             animator.SetInteger("AnimState", 0);
 
         }
@@ -105,11 +113,19 @@ public class Player : MonoBehaviour {
     }
 
     private void Boost() {
-        animator.SetInteger("AnimState", 2);
-        my_Rigidbody.velocity = new Vector2(facingRight? boostSpeed : -boostSpeed, 0f);
-        if((facingRight && transform.position.x > boostTo.x) ||
+        
+        if (idle) {
+            my_Rigidbody.velocity = new Vector2(0f, boostSpeed);
+            animator.SetInteger("AnimState", 5);
+        } else {
+            animator.SetInteger("AnimState", 2);
+            my_Rigidbody.velocity = new Vector2(facingRight ? boostSpeed : -boostSpeed, 0f);
+        }
+        if((idle && transform.position.y > boostTo.y)||
+            (facingRight && transform.position.x > boostTo.x) ||
             (!facingRight && transform.position.x < boostTo.x)) {
             boosting = false;
+            my_Rigidbody.velocity = new Vector2(my_Rigidbody.velocity.x, 0f);
         }
     }
 
