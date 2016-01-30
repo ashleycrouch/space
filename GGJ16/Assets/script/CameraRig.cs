@@ -3,22 +3,14 @@ using System;
 
 public class CameraRig : MonoBehaviour {
 
-	public string targetTag = "Player";
+	public float smoothing = 15;
 
-	Transform target;
-
-	void Start() {
-		UpdateTarget();
+	void Update() {
+		if (Room.current) {
+			Vector3 target = Room.current.bounds.bounds.center;
+			target.z = transform.position.z;
+			transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * smoothing);
+		}
 	}
-
-	void Update()
-	{
-
-	}
-
-	public void UpdateTarget() {
-		target = GameObject.FindGameObjectWithTag(targetTag).transform;
-	}
-
 
 }
