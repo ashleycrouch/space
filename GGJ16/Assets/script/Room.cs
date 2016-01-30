@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Room : MonoBehaviour {
 
@@ -18,13 +18,22 @@ public class Room : MonoBehaviour {
 
 	public BoxCollider2D bounds { get; private set; }
 
+	static List<Room> rooms;
+	public static IEnumerable<Room> allRooms { get { return rooms; } }
+
 	void Awake() {
+		if (rooms == null) {
+			rooms = new List<Room>();
+		}
+		rooms.Add(this);
 		bounds = gameObject.AddComponent<BoxCollider2D>();
 		bounds.size = new Vector2(WIDTH, HEIGHT);
 		bounds.offset = bounds.size / 2;
 		
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		if (player && bounds.bounds.Contains(new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z))) {
+		Vector3 playerPos = player.transform.position;
+		playerPos.z = transform.position.z;
+		if (player && bounds.bounds.Contains(playerPos)) {
 			current = this;
 		}
 	}
@@ -59,6 +68,19 @@ public class Room : MonoBehaviour {
 		collider.size = new Vector2(w, h);
 		collider.offset = collider.size / 2;
 		return obj;
+	}
+
+	public static void SetCurrentFromPlayer() {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		Vector3 playerPos = player.transform.position;
+		foreach (Room room in allRooms) {
+			playerPos.z = room.transform.position.z;
+			Bounds bounds = new Bounds(room.transform.position + (Vector3) room.bounds.size / 2, room.bounds.size / 2);
+			if (bounds.Contains(playerPos)) {
+				current = room;
+				break;
+			}
+		}
 	}
 
 }
