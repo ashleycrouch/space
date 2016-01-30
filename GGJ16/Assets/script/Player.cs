@@ -123,4 +123,8 @@ public class Player : MonoBehaviour {
             canHide = false;
         }
     }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        boosting = false;
+    }
 }
