@@ -11,6 +11,7 @@ public class Task : MonoBehaviour, IComparable {
     public float timeToComplete;
 
     private float timer;
+    public GameObject breathTimer;
 
     void Start() {
         timer = timeToComplete;
@@ -21,7 +22,7 @@ public class Task : MonoBehaviour, IComparable {
             timer -= Time.deltaTime;
 
         if(timer < 0) {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().kill();
+            breathTimer.SetActive(true);
         }
     }
 
