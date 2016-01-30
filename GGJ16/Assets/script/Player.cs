@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public float boostSpeed = 20f;
     public float boostDistance = 5f;
     public float boostCooldown = 1f;
-    public LayerMask groundLayers = LayerMask.NameToLayer("Default");
+    public LayerMask groundLayers;
 
     private bool boosting = false;
     private bool grounded;
