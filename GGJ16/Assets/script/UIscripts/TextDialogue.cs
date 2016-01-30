@@ -14,10 +14,10 @@ public class TextDialogue : MonoBehaviour {
     private int max;
 
 	// Use this for initialization
-	void Awake () {
-        chars = textAsset.ToString().ToCharArray();
-        max = chars.Length;
-	}
+	//void Awake () {
+ //       chars = textAsset.ToString().ToCharArray();
+ //       max = chars.Length;
+	//}
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,5 +42,13 @@ public class TextDialogue : MonoBehaviour {
             this.GetComponent<Text>().text = "";
             counter++;
         }
+    }
+
+    public void sendText(TextAsset incoming) {
+        GetComponent<Text>().text = "";
+        textAsset = incoming;
+        chars = textAsset.ToString().ToCharArray();
+        max = chars.Length;
+        counter = 0;
     }
 }

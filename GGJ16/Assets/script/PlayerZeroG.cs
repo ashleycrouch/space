@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerZeroG : MonoBehaviour {
+public class PlayerZeroG : Player {
 
     public float thrustForce = 10f;
     public float maxSpeed = 8f;
 
-    private Rigidbody2D my_Rigidbody;
 
 	// Use this for initialization
 	void Start () {
         my_Rigidbody = GetComponent<Rigidbody2D>();
 	}
 
+    protected override void Update() {
+        
+    }
+
     // Update is called once per frame
-    void Update() {
+    protected override void FixedUpdate() {
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
