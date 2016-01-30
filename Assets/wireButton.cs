@@ -11,6 +11,7 @@ public class wireButton : MonoBehaviour
     void Start()
     {
         manager = GetComponentInParent<wireManager>();
+        //manager.enabled = false;
     }
 
     public void onClick()
