@@ -77,10 +77,16 @@
     <Compile Include="Assets\script\PlayerZeroG.cs" />
     <Compile Include="Assets\script\Room.cs" />
     <Compile Include="Assets\script\Tasks\Task.cs" />
+    <Compile Include="Assets\script\Tasks\TaskManager.cs" />
     <Compile Include="Assets\script\Tooltip.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
     <Compile Include="Assets\script\UIscripts\TextTrigger.cs" />
     <Compile Include="Assets\script\UIscripts\TimeKeeper.cs" />
+    <Compile Include="Assets\script\circuitButton.cs" />
+    <Compile Include="Assets\script\circuitManager.cs" />
+    <Compile Include="Assets\script\panelScript.cs" />
+    <Compile Include="Assets\script\wireButton.cs" />
+    <Compile Include="Assets\script\wireManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
