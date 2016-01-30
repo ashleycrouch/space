@@ -28,16 +28,15 @@ public class DoorTrigger : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log("enter");
 		if (other.tag == "Player") {
 			if (Room.current == room1) {
 				Room.current = room2;
 			}
 			else if (Room.current == room2)	{
-				Room.current = room2;
+				Room.current = room1;
 			}
 			else {
-				Debug.LogWarning("Door does not connect to current room!", this);
+				Debug.LogWarning("Door does not connect to current room!");
 			}
 		}
 	}
