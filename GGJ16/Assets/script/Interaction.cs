@@ -24,7 +24,7 @@ public class Interaction : MonoBehaviour {
 			}
 		}
 		//handle interaction progress
-		if (interactable) {
+		if (interactable && interactable.InRange()) {
 			if (!interacting && Input.GetMouseButtonDown(0)) {
 				interacting = true;
 				//handle instant interactions

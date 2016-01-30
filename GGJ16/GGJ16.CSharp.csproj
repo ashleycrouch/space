@@ -74,6 +74,7 @@
     <Compile Include="Assets\script\Room.cs" />
     <Compile Include="Assets\script\Tasks\Task.cs" />
     <Compile Include="Assets\script\Interaction.cs" />
+    <Compile Include="Assets\script\Transporter.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
     <Compile Include="Assets\script\UIscripts\TextTrigger.cs" />
     <Compile Include="Assets\script\UIscripts\TimeKeeper.cs" />
