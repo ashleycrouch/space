@@ -9,8 +9,7 @@ public class Interactable : MonoBehaviour {
 	public UnityEvent OnInteract;
 
 	void OnMouseDown() {
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		if (Vector2.Distance(player.transform.position, transform.position) <= range) {
+		if (InRange()) {
 			OnInteract.Invoke();
 		}
 	}
@@ -18,6 +17,11 @@ public class Interactable : MonoBehaviour {
 	void OnDrawGizmosSelected() {
 		Gizmos.color = Color.white;
 		Gizmos.DrawWireSphere(transform.position, range);
+	}
+
+	public bool InRange() {
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		return Vector2.Distance(player.transform.position, transform.position) <= range;
 	}
 
 }
