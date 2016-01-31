@@ -20,6 +20,7 @@ public class Sleep : Task {
         timeKeeper.NewDay();
         taskList.NewDay();
         taskManager.ResetCompletion();
+        GameObject.Find("BreathTimer").SetActive(false);
         base.Complete();
     }
 }
