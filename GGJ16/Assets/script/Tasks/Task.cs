@@ -48,8 +48,9 @@ public class Task : MonoBehaviour, IComparable {
         else
             return 0;
     }
-    public int CompareTo(object x){ 
-        if(time() <= ((Task)x).time()) {
+    public int CompareTo(object x){
+        Task other = (Task)x;
+        if(timeToComplete <= other.timeToComplete) {
             return 1;
         }
         return -1;

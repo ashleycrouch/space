@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class circuitManager : MonoBehaviour {
 
     public int listSize;
-    private int count;
+    public int count;
     private circuitButton[] list;
 
-    public object GameObject { get; internal set; }
-
     // Use this for initialization
-    void Start () {
-        circuitButton[] list = new circuitButton[listSize];
-        count = 0;
+    void Awake() {
 	}
 	
 	// Update is called once per frame
@@ -22,22 +19,29 @@ public class circuitManager : MonoBehaviour {
 
     public void addCircuit(circuitButton newcirc)
     {
-        count++;
-
         if (count == listSize)
         {
+            list = GetComponentsInChildren<circuitButton>();
             for (int x = 0; x < list.Length; x++)
             {
-                list[x].disconnect();
-                list[x] = null;
-                gameObject.SetActive(false);
+                if (list[x].GetComponent<Toggle>().isOn)
+                {
+                    list[x].disconnect();
+                }
             }
+            count = 0;
+            gameObject.SetActive(false);
         }
         else
         {
-            list[count - 1] = newcirc;
+            count++;
         }
-       
+    }
+
+    public void deleteCircuit(circuitButton circ)
+    {
+        circ.disconnect();
+        count--;
     }
 
     public void toggle()
