@@ -146,6 +146,13 @@ public class Player : MonoBehaviour {
 
     public void kill() {
         Debug.Log("YOU PASSED OUT");
+        Vector3 newpos = GameObject.FindGameObjectWithTag("Bed").transform.position;
+        newpos.z = transform.position.z;
+        transform.position = newpos;
+        Room.SetCurrentFromPlayer();
+        CameraRig.main.Snap();
+
+        GameObject.FindGameObjectsWithTag("Bed")
     }
 
     void OnTriggerEnter2D(Collider2D other) {
