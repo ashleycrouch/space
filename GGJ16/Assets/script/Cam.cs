@@ -11,11 +11,12 @@ public class Cam : MonoBehaviour
     public float minAngle = 0;
     public float maxAngle = 180;
     public float maxDist = 100;
+    public Material mat;
 
     Transform player;
     bool rotDir = true;
-    public float targetAngle;
-    public float curAngle;
+    float targetAngle;
+    float curAngle;
 
     BoxCollider2D[] boxes;
     PolygonCollider2D[] colliders;
@@ -36,7 +37,7 @@ public class Cam : MonoBehaviour
         GameObject go = new GameObject("View Cone");
         //go.transform.parent = transform;
         viewCone = go.AddComponent<MeshFilter>();
-        go.AddComponent<MeshRenderer>();
+        go.AddComponent<MeshRenderer>().material = mat;
     }
 
     void Update()
