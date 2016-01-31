@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class circuitManager : MonoBehaviour {
 
     public int listSize;
-    public int count;
+    private int count;
     private circuitButton[] list;
 
     // Use this for initialization
