@@ -9,6 +9,9 @@ public class CameraRig : MonoBehaviour {
 
 	void Awake() {
 		main = this;
+	}
+
+	void Start() {
 		Snap();
 	}
 
