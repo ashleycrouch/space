@@ -153,7 +153,7 @@ public class Cam : MonoBehaviour
         foreach(BoxCollider2D box in boxes)
         {
             Vector2 size = box.size;
-            //Vector3 center = new Vector3(box.offset.x, box.offset.y, 0f);
+            Vector3 center = new Vector3(box.offset.x, box.offset.y, 0f);
             Vector3 worldPos = box.transform.TransformPoint(box.offset);
 
             float top = worldPos.y + (size.y / 2f);
@@ -215,7 +215,6 @@ public class Cam : MonoBehaviour
             }
             temp.Add(p);
         }
-
         for (int i = 0; i < temp.Count; i++)
         {
             worldPoints.Insert(i * 2 + 1, temp[i]);

@@ -58,9 +58,12 @@
      <Compile Include="Assets\script\Player.cs" />
      <Compile Include="Assets\script\PlayerZeroG.cs" />
      <Compile Include="Assets\script\Room.cs" />
+     <Compile Include="Assets\script\RoomNameText.cs" />
      <Compile Include="Assets\script\Tasks\Eat.cs" />
+     <Compile Include="Assets\script\Tasks\Sleep.cs" />
      <Compile Include="Assets\script\Tasks\Switches.cs" />
      <Compile Include="Assets\script\Tasks\Task.cs" />
+     <Compile Include="Assets\script\Tasks\TaskList.cs" />
      <Compile Include="Assets\script\Tasks\TaskManager.cs" />
      <Compile Include="Assets\script\Transporter.cs" />
      <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
@@ -72,6 +75,7 @@
      <Compile Include="Assets\script\UIscripts\wireButton.cs" />
      <Compile Include="Assets\script\circuitManager.cs" />
      <Compile Include="Assets\script\wireManager.cs" />
+     <None Include="Assets\Materials\DepthMask.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
