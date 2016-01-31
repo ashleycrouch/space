@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
     private bool jumpReleased;
     private bool doubleJumped;
     private bool facingRight = true;
-    private bool hiding;
+    //private bool hiding;
     private bool idle;
     private float boostTimer = 0f;
     private Vector2 boostTo;
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour {
         } else if (canHide && (yInput == -1)) {
             //will play hiding animation
             GetComponent<BoxCollider2D>().enabled = false;
-            hiding = true;
+            //hiding = true;
             animator.SetInteger("AnimState", 6);
             my_Rigidbody.isKinematic = true;
         }else{
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour {
 
     private void Move(float x, float y) {
         my_Rigidbody.velocity = new Vector2(speed*x, my_Rigidbody.velocity.y);
-        hiding = false;
+        //hiding = false;
         idle = false;
         if(x > 0) {
             transform.localScale = new Vector2(1f,1.5f);
