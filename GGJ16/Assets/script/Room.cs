@@ -6,7 +6,9 @@ public class Room : MonoBehaviour {
 
 	static Room _current;
 	public static Room current {
-		get { return _current; }
+		get {
+			return _current;
+		}
 		set {
 			if (_current) {
 				foreach (MultiRoomObject obj in _current.multiRoomObjects) {
