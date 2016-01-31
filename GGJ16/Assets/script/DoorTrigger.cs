@@ -16,7 +16,7 @@ public class DoorTrigger : MultiRoomObject {
 		room2 = rooms.Count > 1 ? rooms[1] : null;
 		if (room1 == null || room2 == null) {
 			Debug.LogWarning("Door is missing rooms!", this);
-			gameObject.SetActive(false);
+			collider.enabled = false;
 		}
 		else {
 			if (!vertical) {
