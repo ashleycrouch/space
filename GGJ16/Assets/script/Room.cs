@@ -39,6 +39,8 @@ public class Room : MonoBehaviour {
 	static List<Room> rooms;
 	public static IEnumerable<Room> allRooms { get { return rooms; } }
 
+	public string roomName = "<roomName>";
+
 	List<MultiRoomObject> multiRoomObjects;
 
 	void Awake() {
