@@ -74,6 +74,7 @@
      <Compile Include="Assets\script\UIscripts\logScript.cs" />
      <Compile Include="Assets\script\UIscripts\panelScript.cs" />
      <Compile Include="Assets\script\UIscripts\wireButton.cs" />
+     <Compile Include="Assets\script\ViewMesh.cs" />
      <Compile Include="Assets\script\circuitManager.cs" />
      <Compile Include="Assets\script\wireManager.cs" />
  <Reference Include="UnityEngine.UI">
