@@ -11,6 +11,7 @@ public class Task : MonoBehaviour, IComparable {
     public float timeToComplete;
 
     protected float timer;
+    protected bool timing;
     public GameObject breathTimer;
 
     protected virtual void Start() {
@@ -18,12 +19,16 @@ public class Task : MonoBehaviour, IComparable {
     }
 
     protected virtual void Update() {
-        if (!completed)
+        if (!completed && timing)
             timer -= Time.deltaTime;
 
         if (timer < 0) {
             breathTimer.SetActive(true);
         }
+    }
+
+    public void startTimer() {
+        timing = true;
     }
 
 	public virtual void Complete() {
