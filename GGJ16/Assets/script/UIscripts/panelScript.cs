@@ -9,14 +9,15 @@ public class panelScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         manager = GameObject.FindObjectOfType<circuitManager>();
-
         manager.gameObject.SetActive(false);
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().velocity != Vector2.zero)
+        {
+            canvas.gameObject.SetActive(false);
+        }
 	}
 
     public void onClick()
