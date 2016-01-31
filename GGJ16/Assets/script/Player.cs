@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
     public LayerMask collisionLayers;
 
     public bool isWatched = false;
-
+    public bool hasJetPack;
     public bool canHide;
 
     private Animator animator;
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour {
     protected virtual void Update() {
         isWatched = false;
 
-        if (Input.GetAxisRaw("Boost") > 0 && boostTimer <= 0) {
+        if (Input.GetAxisRaw("Boost") > 0 && boostTimer <= 0 && hasJetPack) {
             boosting = true;
             boostTimer = boostCooldown;
             if (idle) {
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour {
         }
 
         if (jumpPressed) {
-            if (grounded || !doubleJumped) {
+            if (grounded || (!doubleJumped && hasJetPack)) {
                 my_Rigidbody.AddForce(new Vector2(0f, jumpForce));
                 if (!grounded) {
                     doubleJumped = true;

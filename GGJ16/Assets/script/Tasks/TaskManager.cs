@@ -35,9 +35,5 @@ public class TaskManager : MonoBehaviour {
         tasks.Sort();
         tasks.TrimToSize();
     }
-    public void ResetCompletion() {
-        foreach(Task task in tasks) {
-            task.Reset();
-        }
-    }
+
 }

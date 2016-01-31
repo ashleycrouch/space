@@ -23,13 +23,18 @@ public class TaskList : MonoBehaviour {
             return;
         }
         temp.Add(tasks[counter]);
+        temp.TrimToSize();
         counter++;
     }
     public void NewDay() {
-        foreach(Task task in temp) {
+        foreach (Task task in tasks) {
+            task.Reset();
+        }
+        foreach (Task task in temp) {
             taskManager.AddTask(task);
             temp.Remove(task);
         }
+
     }
 
 }
