@@ -26,12 +26,14 @@ public class Task : MonoBehaviour, IComparable {
         }
     }
 
-	public virtual void SetComplete(bool toSet) {
-        if (toSet)
-            timer = timeToComplete;
-        completed = toSet;
+	public virtual void Complete() {
+        timer = timeToComplete;
+        completed = true;
     }
-
+    public virtual void Reset() {
+        timer = timeToComplete;
+        completed = false;
+    }
 
     public bool isComplete() {
         return completed;

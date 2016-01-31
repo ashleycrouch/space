@@ -23,7 +23,7 @@ public class TaskManager : MonoBehaviour {
         string text = "";
         foreach (Task task in tasks) {
             if (!task.isComplete()) {
-                text += task.description+" "+ task.Room() +"  "
+                text += task.description+"@"+ task.Room() +"-"
                     + ((int)task.time() / 60).ToString().PadLeft(2, '0') +":"
                     + ((int)task.time() % 60).ToString().PadLeft(2, '0')
                     + "\n";
