@@ -84,6 +84,7 @@
     <Compile Include="Assets\script\Tasks\Eat.cs" />
     <Compile Include="Assets\script\Tasks\Switches.cs" />
     <Compile Include="Assets\script\Tasks\Task.cs" />
+    <Compile Include="Assets\script\Tasks\TaskList.cs" />
     <Compile Include="Assets\script\Tasks\TaskManager.cs" />
     <Compile Include="Assets\script\Transporter.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
