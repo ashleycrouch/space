@@ -32,8 +32,7 @@ public class Door : MonoBehaviour {
 	void Awake() {
 		neutralPosition = transform.localPosition;
 		if (startOpen) {
-			t = 1;
-			transform.localPosition = neutralPosition + Vector3.up * distance * t;
+			Open();
 		}
 	}
 
