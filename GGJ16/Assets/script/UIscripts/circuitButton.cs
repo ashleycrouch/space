@@ -17,6 +17,7 @@ public class circuitButton : MonoBehaviour {
 
     public void onClick()
     {
+        Debug.Log("1");
         if (gameObject.GetComponent<Toggle>().isOn)
         {
             select.Invoke();

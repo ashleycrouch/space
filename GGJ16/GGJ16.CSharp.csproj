@@ -89,6 +89,7 @@
     <Compile Include="Assets\script\Tasks\TaskList.cs" />
     <Compile Include="Assets\script\Tasks\TaskManager.cs" />
     <Compile Include="Assets\script\Transporter.cs" />
+    <Compile Include="Assets\script\UIscripts\Test.cs" />
     <Compile Include="Assets\script\UIscripts\TextDialogue.cs" />
     <Compile Include="Assets\script\UIscripts\TextTrigger.cs" />
     <Compile Include="Assets\script\UIscripts\TimeKeeper.cs" />

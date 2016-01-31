@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class circuitManager : MonoBehaviour {
 
     public int listSize;
-    private int count;
+    public int count;
     private circuitButton[] list;
 
     // Use this for initialization
@@ -19,6 +19,7 @@ public class circuitManager : MonoBehaviour {
 
     public void addCircuit(circuitButton newcirc)
     {
+        Debug.Log("AddCircuit is running");
         if (count == listSize)
         {
             list = GetComponentsInChildren<circuitButton>();
