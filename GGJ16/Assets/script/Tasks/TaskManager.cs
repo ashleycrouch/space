@@ -6,16 +6,12 @@ using System.Collections.Generic;
 
 public class TaskManager : MonoBehaviour {
 
-    public Task[] initialTasks;
     private ArrayList tasks;
     private GameObject breathTimer;
 
 	// Use this for initialization
 	void Start () {
         tasks = new ArrayList();
-        foreach(Task task in initialTasks) {
-            AddTask(task);
-        }
 	}
 	
 	// Update is called once per frame
