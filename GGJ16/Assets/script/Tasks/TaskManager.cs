@@ -31,6 +31,7 @@ public class TaskManager : MonoBehaviour {
 
     public void AddTask(Task a) {
         tasks.Add(a);
+        a.startTimer();
         tasks.Sort();
         tasks.TrimToSize();
     }
