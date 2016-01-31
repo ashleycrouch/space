@@ -73,6 +73,7 @@
     <Compile Include="Assets\script\Cam.cs" />
     <Compile Include="Assets\script\CameraRig.cs" />
     <Compile Include="Assets\script\DestroyAfter.cs" />
+    <Compile Include="Assets\script\DialogueDays.cs" />
     <Compile Include="Assets\script\Door.cs" />
     <Compile Include="Assets\script\DoorTrigger.cs" />
     <Compile Include="Assets\script\Interactable.cs" />
@@ -104,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\DepthMask.shader" />
+    <None Include="Assets\Text\D1_GameStart.txt" />
+    <None Include="Assets\Text\D2_Start.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

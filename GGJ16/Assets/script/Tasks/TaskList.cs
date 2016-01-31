@@ -34,6 +34,7 @@ public class TaskList : MonoBehaviour {
             taskManager.AddTask(task);
             temp.Remove(task);
         }
+        GameObject.Find("DailyDialogue").GetComponent<DialogueDays>().NewDay();
 
     }
 
