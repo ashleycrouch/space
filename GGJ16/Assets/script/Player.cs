@@ -151,8 +151,6 @@ public class Player : MonoBehaviour {
         transform.position = newpos;
         Room.SetCurrentFromPlayer();
         CameraRig.main.Snap();
-
-        GameObject.FindGameObjectsWithTag("Bed")
     }
 
     void OnTriggerEnter2D(Collider2D other) {
