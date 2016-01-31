@@ -5,6 +5,8 @@ public class ViewMesh : MonoBehaviour {
 
 	public int resolution = 16;
 	public LayerMask mask;
+	public float edgeDistanceThreshold = .5f;
+	public int edgeSolverIterations = 4;
 
 	MeshFilter filter;
 	new Cam camera;
@@ -26,9 +28,14 @@ public class ViewMesh : MonoBehaviour {
 		//find thaose damn verts
 		float inc = (camera.viewAngle * 2) / (resolution + 1);
 		List<Vector3> vertList = new List<Vector3>();
+		RaycastHit2D last;
+		float maxDist = 5000;
 		for (float angle = -camera.viewAngle; angle < camera.viewAngle; angle += inc) {
 			Vector3 dir = Quaternion.Euler(0, 0, angle) * Vector3.right;
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.rotation * dir, Mathf.Infinity, mask);
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.rotation * dir, maxDist, mask);
+			if (hit.collider == null) {
+				hit.point = transform.position + (transform.rotation * dir) * maxDist;
+			}
 			Debug.DrawLine(transform.position, hit.point, Color.white);
 			vertList.Add(transform.InverseTransformPoint(hit.point));
 		}
