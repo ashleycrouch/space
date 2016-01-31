@@ -53,19 +53,15 @@ public class DoorTrigger : MultiRoomObject {
 		Vector3 playerPos = player.transform.position;
 		if (direction == Vector2.left) {
 			playerPos.x = transform.position.x - player.bounds.size.x - bufferDist;
-			print("left");
 		}
 		if (direction == Vector2.right) {
 			playerPos.x = transform.position.x + bounds.size.x + bufferDist;
-			print("right");
 		}
 		if (direction == Vector2.down) {
 			playerPos.y = transform.position.y - player.bounds.size.y - bufferDist;
-			print("down");
 		}
 		if (direction == Vector2.up) {
 			playerPos.y = transform.position.y + bounds.size.y + bufferDist;
-			print("up");
 		}
 		player.transform.position = playerPos;
 	}
