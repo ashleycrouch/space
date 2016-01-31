@@ -18,10 +18,10 @@ public class Task : MonoBehaviour, IComparable {
     }
 
     protected virtual void Update() {
-        if(!completed)
+        if (!completed)
             timer -= Time.deltaTime;
 
-        if(timer < 0) {
+        if (timer < 0) {
             breathTimer.SetActive(true);
         }
     }
