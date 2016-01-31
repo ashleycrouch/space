@@ -39,6 +39,8 @@ public class Room : MonoBehaviour {
 	static List<Room> rooms;
 	public static IEnumerable<Room> allRooms { get { return rooms; } }
 
+	public string roomName = "<roomName>";
+
 	List<MultiRoomObject> multiRoomObjects;
 
 	void Awake() {
@@ -94,7 +96,6 @@ public class Room : MonoBehaviour {
 			playerPos.z = room.transform.position.z;
 			Bounds bounds = new Bounds(room.transform.position + (Vector3) room.bounds.size / 2, room.bounds.size);
 			Vector3 extents = bounds.extents;
-			//extents.z = 10000000;
 			bounds.extents = extents;
 			if (bounds.Contains(playerPos)) {
 				current = room;
