@@ -98,7 +98,7 @@ public class Cam : MonoBehaviour
 
     bool playerInView(float angleDif)
     {
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, layerMask, layerMask);
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, layerMask);
         return ((hit.collider != null && hit.collider.tag == "Player") && (angleDif > viewAngle || angleDif < -viewAngle));
     }
 
