@@ -16,4 +16,9 @@ public class Transporter : MonoBehaviour {
 		}
 	}
 
+	public void ChangeDestination(Transform destination, string tooltip) {
+		this.destination = destination;
+		GetComponent<Interactable>().tooltipText = tooltip;
+	}
+
 }
