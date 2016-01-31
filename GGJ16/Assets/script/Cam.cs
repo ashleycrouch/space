@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Cam : MonoBehaviour
 {
-
     public bool tracking = false;
     public bool stationary = false;
     public float rotSpeed = 10;
@@ -16,7 +15,7 @@ public class Cam : MonoBehaviour
     public LayerMask layerMask;
 
     Transform player;
-    bool rotDir = true;
+    public bool rotDir = true;
     float targetAngle;
     float curAngle;
 
@@ -74,30 +73,21 @@ public class Cam : MonoBehaviour
             {
                 targetAngle = angleDif + curAngle;
             }
-
-            /*if (angle < viewAngle)
-            {
-
-                //Ray2D ray = new Ray2D();
-                //ray.origin = transform.position;
-            }*/
         }
         else
             standardRot();
 
 
-        targetAngle = Mathf.Clamp(targetAngle, minAngle, maxAngle);
-        if (targetAngle == minAngle % 360)
+        if (targetAngle <= minAngle && targetAngle > 45)
         {
             rotDir = true;
-            if (minAngle / 360 >= 1)
-                targetAngle = minAngle % 360;
+                targetAngle = minAngle;
         }
-        else if (targetAngle == maxAngle % 360)
+		else if (targetAngle >= maxAngle || targetAngle <= 45)
         {
             rotDir = false;
-            if (minAngle / 360 >= 1)
-                targetAngle = minAngle % 360;
+			if (maxAngle == 360)
+				targetAngle = maxAngle - .1f;
         }
         transform.eulerAngles = new Vector3(0, 0, targetAngle);
 
@@ -184,21 +174,21 @@ public class Cam : MonoBehaviour
             }
 
             angle = angleTo(tr);
-            hit = Physics2D.Linecast(transform.position, tr);
+            hit = Physics2D.Linecast(transform.position, tr, layerMask);
             if ((angle - viewAngle <= 0 || angle + viewAngle <= 0) && (/*hit.point != null &&*/ hit.fraction >= .9))
             {
                 worldPoints.Add(tr);
             }
 
             angle = angleTo(bl);
-            hit = Physics2D.Linecast(transform.position, bl);
+            hit = Physics2D.Linecast(transform.position, bl, layerMask);
             if ((angle - viewAngle <= 0 || angle + viewAngle <= 0) && (/*hit.point != null &&*/ hit.fraction >= .9))
             {
                 worldPoints.Add(bl);
             }
 
             angle = angleTo(br);
-            hit = Physics2D.Linecast(transform.position, br);
+            hit = Physics2D.Linecast(transform.position, br, layerMask);
             if ((angle - viewAngle <= 0 || angle + viewAngle <= 0) && (/*hit.point != null &&*/ hit.fraction >= .9))
             {
                 worldPoints.Add(br);
@@ -208,7 +198,7 @@ public class Cam : MonoBehaviour
 
         worldPoints.Sort((x, y) => { return (int)(angleTo(y) - angleTo(x)); });
 
-        //Raycast past points to find view extents
+        //Raycast past points to find point behind it
         List<Vector3> temp = new List<Vector3>();
         for (int i = 0; i < worldPoints.Count; i++)
         {
