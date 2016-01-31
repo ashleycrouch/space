@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
     public float boostCooldown = 1f;
     public LayerMask collisionLayers;
 
+    public bool isWatched = false;
+
     public bool canHide;
 
     private Animator animator;
@@ -33,6 +35,8 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
     protected virtual void Update() {
+        isWatched = false;
+
         if (Input.GetAxisRaw("Boost") > 0 && boostTimer <= 0) {
             boosting = true;
             boostTimer = boostCooldown;

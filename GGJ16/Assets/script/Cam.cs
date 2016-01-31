@@ -6,12 +6,14 @@ public class Cam : MonoBehaviour
 {
 
     public bool tracking = false;
+    public bool stationary = false;
     public float rotSpeed = 10;
     public float viewAngle = 45;
     public float minAngle = 0;
     public float maxAngle = 180;
     public float maxDist = 100;
     public Material mat;
+    public LayerMask layerMask;
 
     Transform player;
     bool rotDir = true;
@@ -44,7 +46,14 @@ public class Cam : MonoBehaviour
     {
         curAngle = transform.eulerAngles.z;
 
-        if (tracking)
+        if (playerInView(angleTo(player.position)))
+            player.GetComponent<Player>().isWatched = true;
+
+        if(stationary)
+        {
+            drawView();
+            return;
+        }else if (tracking)
         {
 
             float angleDif = angleTo(player.position);
@@ -81,14 +90,12 @@ public class Cam : MonoBehaviour
         if (targetAngle == minAngle % 360)
         {
             rotDir = true;
-            Debug.Log("rotDir true");
             if (minAngle / 360 >= 1)
                 targetAngle = minAngle % 360;
         }
         else if (targetAngle == maxAngle % 360)
         {
             rotDir = false;
-            Debug.Log("rotDir true");
             if (minAngle / 360 >= 1)
                 targetAngle = minAngle % 360;
         }
@@ -120,7 +127,7 @@ public class Cam : MonoBehaviour
 
     bool playerInView(float angleDif)
     {
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position);
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, player.position, layerMask, layerMask);
         return ((hit.collider != null && hit.collider.tag == "Player") && (angleDif > viewAngle || angleDif < -viewAngle) && (hit.distance <= maxDist));
     }
 
@@ -144,7 +151,7 @@ public class Cam : MonoBehaviour
             {
                 points[i] = col.transform.TransformPoint(points[i]); //transform to global space
                 float angle = angleTo(points[i]);
-                RaycastHit2D hit = Physics2D.Linecast(transform.position, points[i]);
+                RaycastHit2D hit = Physics2D.Linecast(transform.position, points[i], layerMask);
                 if ((angle - viewAngle <= 0 || angle + viewAngle <= 0) && (/*hit.point != null &&*/ hit.fraction >= .9))
                 {
                     worldPoints.Add(points[i]);
@@ -170,7 +177,7 @@ public class Cam : MonoBehaviour
             Vector3 br = new Vector3(right, bot, worldPos.z);
             
             float angle = angleTo(tl);
-            RaycastHit2D hit = Physics2D.Linecast(transform.position, tl);
+            RaycastHit2D hit = Physics2D.Linecast(transform.position, tl, layerMask);
             if ((angle - viewAngle <= 0 || angle + viewAngle <= 0) && (/*hit.point != null &&*/ hit.fraction >= .9))
             {
                 worldPoints.Add(tl);
@@ -208,7 +215,7 @@ public class Cam : MonoBehaviour
             Vector3 p;
             float angle = angleTo(worldPoints[i]) + transform.eulerAngles.z;
             Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0f).normalized;
-            RaycastHit2D hit = Physics2D.Raycast(worldPoints[i] + dir * .001f, dir /*maxDist - Vector3.Distance(transform.position, worldPoints[i])*/);
+            RaycastHit2D hit = Physics2D.Raycast(worldPoints[i] + dir * .001f, dir, layerMask /*maxDist - Vector3.Distance(transform.position, worldPoints[i])*/);
             //Debug.DrawRay(worldPoints[i], dir);
             p = hit.point;
             //Debug.Log(worldPoints[i] + " -> " + p);
@@ -234,7 +241,7 @@ public class Cam : MonoBehaviour
         float a = (transform.eulerAngles.z + viewAngle);
         Vector2 direction = new Vector3(Mathf.Cos(a * Mathf.Deg2Rad), Mathf.Sin(a * Mathf.Deg2Rad), 0f).normalized;
 
-        Vector3 point = Physics2D.Raycast(transform.position, direction, maxDist).point;
+        Vector3 point = Physics2D.Raycast(transform.position, direction, maxDist, layerMask).point;
         if (point == Vector3.zero)
         {
             point = new Vector3(transform.position.x + maxDist * Mathf.Cos(a * Mathf.Deg2Rad), transform.position.y + maxDist * Mathf.Sin(a * Mathf.Deg2Rad), 0);
@@ -244,7 +251,7 @@ public class Cam : MonoBehaviour
         a = (transform.eulerAngles.z - viewAngle);
         direction = new Vector3(Mathf.Cos(a * Mathf.Deg2Rad), Mathf.Sin(a * Mathf.Deg2Rad), 0f).normalized;
 
-        point = Physics2D.Raycast(transform.position, direction, maxDist).point;
+        point = Physics2D.Raycast(transform.position, direction, maxDist, layerMask).point;
         if (point == Vector3.zero)
         {
             point = new Vector3(transform.position.x + maxDist * Mathf.Cos(a * Mathf.Deg2Rad), transform.position.y + maxDist * Mathf.Sin(a * Mathf.Deg2Rad), 0);
