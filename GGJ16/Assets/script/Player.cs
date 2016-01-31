@@ -147,13 +147,13 @@ public class Player : MonoBehaviour {
 
     public void kill() {
         Debug.Log("YOU PASSED OUT");
-        Vector3 newpos = GameObject.FindGameObjectWithTag("Bed").transform.position;
+        GameObject bed = GameObject.Find("Bed");
+        Vector3 newpos = bed.transform.position;
         newpos.z = transform.position.z;
         transform.position = newpos;
         Room.SetCurrentFromPlayer();
         CameraRig.main.Snap();
-
-        GameObject.FindGameObjectsWithTag("Bed");
+        GameObject.Find("SleepTask").GetComponent<Sleep>().Complete();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -168,15 +168,18 @@ public class Player : MonoBehaviour {
     }
     void CheckBoostLimit() {
         Vector2 end;
+        Vector2 start;
         if (idle) {
-            end = new Vector2(transform.position.x, transform.position.y+0.75f);
+            end = new Vector2(transform.position.x + .5f, transform.position.y + 0.75f);
+            start = new Vector2(transform.position.x-.5f, transform.position.y+0.75f);
         } else {
-            end = new Vector2(transform.position.x + (facingRight ? 0.75f : -0.75f), transform.position.y);
+            end = new Vector2(transform.position.x + (facingRight ? 0.75f : -0.75f), transform.position.y + .7f);
+            start = new Vector2(transform.position.x + (facingRight ? 0.75f : -0.75f), transform.position.y + .7f);
         }
-        if(Physics2D.Linecast(transform.position, end, collisionLayers)) {
+        if (Physics2D.Linecast(start, end, collisionLayers)) {
             boosting = false;
         }
-        Debug.DrawLine(transform.position, end);
+        Debug.DrawLine(start, end);
 
     }
 }

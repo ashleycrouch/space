@@ -15,9 +15,10 @@ public class Sleep : Task {
 
     public override void Complete()
     {
-        timeKeeper.NewDay();
-        taskList.NewDay();
+
         GameObject.Find("BreathTimer").SetActive(false);
+        timeKeeper.NewDay(); 
+        taskList.NewDay();
         base.Complete();
     }
 }

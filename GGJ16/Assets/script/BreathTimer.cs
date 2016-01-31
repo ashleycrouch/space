@@ -9,9 +9,11 @@ public class BreathTimer : MonoBehaviour {
     public GameObject player;
     private float timer = 0f;
 
+    private bool dead = false;
 
 	void OnEnable () {
         timer = breathTime;
+        dead = false;
         player = GameObject.FindWithTag("Player");
     }
 
@@ -20,8 +22,9 @@ public class BreathTimer : MonoBehaviour {
         timer -= Time.deltaTime;
         if (timer >= 0) {
             GetComponent<Text>().text = ((int)timer % 60).ToString();
-        } else {
+        } else if(!dead) {
             player.GetComponent<Player>().kill();
+            dead = true;
         }
     }
 }
