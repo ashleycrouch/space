@@ -40,7 +40,7 @@ public class TaskManager : MonoBehaviour {
     }
     public void ResetCompletion() {
         foreach(Task task in tasks) {
-            task.SetComplete(false);
+            task.Reset();
         }
     }
 }
