@@ -17,7 +17,6 @@ public class circuitButton : MonoBehaviour {
 
     public void onClick()
     {
-        Debug.Log(gameObject.GetComponent<Toggle>().isOn);
         if (gameObject.GetComponent<Toggle>().isOn)
         {
             select.Invoke();
@@ -35,5 +34,11 @@ public class circuitButton : MonoBehaviour {
     {
         gameObject.GetComponent<Toggle>().isOn = false;
         deselect.Invoke();
+    }
+
+    public void connect()
+    {
+        gameObject.GetComponent<Toggle>().isOn = true;
+        select.Invoke();
     }
 }
