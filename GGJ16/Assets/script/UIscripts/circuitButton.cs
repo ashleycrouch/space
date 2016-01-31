@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class circuitButton : MonoBehaviour {
 
-    public GameObject thing;
+    public UnityEvent select;
+    public UnityEvent deselect;
     private circuitManager manager;
 
     // Use this for initialization
@@ -15,17 +17,23 @@ public class circuitButton : MonoBehaviour {
 
     public void onClick()
     {
-        if (!gameObject.GetComponent<Toggle>().isOn)
+        Debug.Log(gameObject.GetComponent<Toggle>().isOn);
+        if (gameObject.GetComponent<Toggle>().isOn)
         {
-            thing.SetActive(true);
+            select.Invoke();
             manager.addCircuit(this);
+        }
+        else if(manager != null)
+        {
+            deselect.Invoke();
+            manager.deleteCircuit(this);
         }
     }
 
     //method that makes the button disconnect the wires when it's not clicked
     public void disconnect()
     {
-        thing.SetActive(false);
         gameObject.GetComponent<Toggle>().isOn = false;
+        deselect.Invoke();
     }
 }

@@ -24,7 +24,10 @@ public class TaskManager : MonoBehaviour {
         Debug.Log(tasks.Capacity);
         foreach (Task task in tasks) {
             if (!task.isComplete()) {
-                text += (((int)task.time() / 60) > 0 ? (((int)task.time() / 60).ToString()+":"): "" ) + ((int)task.time() % 60).ToString().PadLeft(2,'0') +" "+task.description+" "+ task.Room() +"\n";
+                text += task.description+" "+ task.Room() +"  "
+                    + ((int)task.time() / 60).ToString().PadLeft(2, '0') +":"
+                    + ((int)task.time() % 60).ToString().PadLeft(2, '0')
+                    + "\n";
             }
 
         }
