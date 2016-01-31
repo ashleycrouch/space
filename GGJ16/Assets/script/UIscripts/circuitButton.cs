@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class circuitButton : MonoBehaviour {
 
-    public GameObject thing;
+    public UnityEvent select;
+    public UnityEvent deselect;
     private circuitManager manager;
 
     // Use this for initialization
@@ -18,12 +20,12 @@ public class circuitButton : MonoBehaviour {
         Debug.Log(gameObject.GetComponent<Toggle>().isOn);
         if (gameObject.GetComponent<Toggle>().isOn)
         {
-            thing.SetActive(true);
+            select.Invoke();
             manager.addCircuit(this);
         }
         else if(manager != null)
         {
-            thing.SetActive(false);
+            deselect.Invoke();
             manager.deleteCircuit(this);
         }
     }
@@ -32,6 +34,6 @@ public class circuitButton : MonoBehaviour {
     public void disconnect()
     {
         gameObject.GetComponent<Toggle>().isOn = false;
-        thing.SetActive(false);
+        deselect.Invoke();
     }
 }

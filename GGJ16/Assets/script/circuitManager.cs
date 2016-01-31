@@ -19,7 +19,6 @@ public class circuitManager : MonoBehaviour {
 
     public void addCircuit(circuitButton newcirc)
     {
-        Debug.Log("addCircuit is running");
         if (count == listSize)
         {
             list = GetComponentsInChildren<circuitButton>();
