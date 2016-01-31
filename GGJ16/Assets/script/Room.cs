@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Room : MonoBehaviour {
 
@@ -20,8 +21,13 @@ public class Room : MonoBehaviour {
 				}
 				_current.gameObject.SetActive(true);
 			}
+			if (onRoomChange != null) {
+				onRoomChange(_current);
+			}
 		}
 	}
+
+	public static event Action<Room> onRoomChange;
 
 	public const int WIDTH = 16;
 	public const int HEIGHT = 12;
