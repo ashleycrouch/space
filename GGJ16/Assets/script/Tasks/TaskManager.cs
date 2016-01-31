@@ -21,7 +21,6 @@ public class TaskManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         string text = "";
-        Debug.Log(tasks.Capacity);
         foreach (Task task in tasks) {
             if (!task.isComplete()) {
                 text += task.description+" "+ task.Room() +"  "

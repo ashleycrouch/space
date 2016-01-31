@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public float boostSpeed = 20f;
     public float boostDistance = 5f;
     public float boostCooldown = 1f;
-    public LayerMask groundLayers;
+    public LayerMask collisionLayers;
 
     public bool canHide;
 
@@ -33,7 +33,6 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
     protected virtual void Update() {
-        Debug.Log(boostTimer);
         if (Input.GetAxisRaw("Boost") > 0 && boostTimer <= 0) {
             boosting = true;
             boostTimer = boostCooldown;
@@ -62,7 +61,6 @@ public class Player : MonoBehaviour {
 
         GetComponent<BoxCollider2D>().enabled = true;
         my_Rigidbody.isKinematic = false;
-        
 
         if (boosting) {
 
@@ -114,7 +112,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Boost() {
-        
+        CheckBoostLimit();
         if (idle) {
             my_Rigidbody.velocity = new Vector2(0f, boostSpeed);
             animator.SetInteger("AnimState", 5);
@@ -134,7 +132,7 @@ public class Player : MonoBehaviour {
         Vector2 bottomLeft = new Vector2(transform.position.x - 0.50f, transform.position.y - 0.8f);
         Vector2 bottomRight = new Vector2(transform.position.x + 0.50f, transform.position.y - 0.8f);
         Debug.DrawLine(bottomLeft, bottomRight);
-        if (Physics2D.Linecast(bottomLeft, bottomRight, groundLayers)) {
+        if (Physics2D.Linecast(bottomLeft, bottomRight, collisionLayers)) {
             grounded = true;
             doubleJumped = false;
         } else {
@@ -156,8 +154,17 @@ public class Player : MonoBehaviour {
             canHide = false;
         }
     }
+    void CheckBoostLimit() {
+        Vector2 end;
+        if (idle) {
+            end = new Vector2(transform.position.x, transform.position.y+0.75f);
+        } else {
+            end = new Vector2(transform.position.x + (facingRight ? 0.75f : -0.75f), transform.position.y);
+        }
+        if(Physics2D.Linecast(transform.position, end, collisionLayers)) {
+            boosting = false;
+        }
+        Debug.DrawLine(transform.position, end);
 
-    void OnCollisionEnter2D(Collision2D other) {
-        boosting = false;
     }
 }

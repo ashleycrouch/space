@@ -10,14 +10,14 @@ public class Task : MonoBehaviour, IComparable {
     public string description;
     public float timeToComplete;
 
-    private float timer;
+    protected float timer;
     public GameObject breathTimer;
 
-    void Start() {
+    protected virtual void Start() {
         timer = timeToComplete;
     }
 
-    void Update() {
+    protected virtual void Update() {
         if(!completed)
             timer -= Time.deltaTime;
 
