@@ -71,6 +71,7 @@ public class Player : MonoBehaviour {
             //will play hiding animation
             GetComponent<BoxCollider2D>().enabled = false;
             hiding = true;
+            animator.SetInteger("AnimState", 6);
             my_Rigidbody.isKinematic = true;
         }else{
             Move(xInput, yInput);
