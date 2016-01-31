@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public float jumpForce = 500f;
+    public float doubleJumpForce = 500f;
     public float speed = 10f;
     public float boostSpeed = 20f;
     public float boostDistance = 5f;
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour {
 
         if (jumpPressed) {
             if (grounded || (!doubleJumped && hasJetPack)) {
-                my_Rigidbody.AddForce(new Vector2(0f, jumpForce));
+                my_Rigidbody.AddForce(new Vector2(0f, !grounded? doubleJumpForce : jumpForce));
                 if (!grounded) {
                     doubleJumped = true;
                     animator.SetInteger("AnimState", 4);

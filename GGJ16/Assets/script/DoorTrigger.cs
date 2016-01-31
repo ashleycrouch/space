@@ -49,7 +49,7 @@ public class DoorTrigger : MultiRoomObject {
 	}
 
 	void MovePlayer(Collider2D player, Vector2 direction) {
-		float bufferDist = 0.5f; //extra distance to move player
+		float bufferDist = vertical ? 1f : .5f; //extra distance to move player
 		Vector3 playerPos = player.transform.position;
 		if (direction == Vector2.left) {
 			playerPos.x = transform.position.x - player.bounds.size.x - bufferDist;
